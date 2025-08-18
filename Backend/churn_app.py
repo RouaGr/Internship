@@ -10,7 +10,7 @@ import numpy as np
 prediction_history =[]
 
 # Load model
-model = joblib.load("model_churn.pkl")
+model = joblib.load("../Model_processing/model_churn.pkl")
 
 # Define the API
 app = FastAPI(title="Churn Prediction API")
