@@ -11,6 +11,7 @@ prediction_history =[]
 
 # Load model
 model = joblib.load("../Model_processing/model_churn.pkl")
+print(model)
 
 # Define the API
 app = FastAPI(title="Churn Prediction API")
