@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 
-const Predict = () => {
+const Predict = ({ onPredictionUpdate }) => {
   const [form, setForm] = useState({
     AccountWeeks: 100,
     ContractRenewal: 1,
@@ -30,6 +30,10 @@ const Predict = () => {
     try {
       const res = await axios.post('http://127.0.0.1:8000/predict', form);
       setResult(res.data);
+      
+      if (onPredictionUpdate && res.data) {
+        onPredictionUpdate(res.data.prediction);
+      }
     } catch (err) {
       console.error("Prediction request failed:", err);
       alert("Failed to get prediction. Check your backend server or CORS settings.");

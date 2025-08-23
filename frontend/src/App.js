@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from "react-BrowserRouter-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Predict from './pages/Predict';
 import ImportantFeatures from './pages/ImportantFeatures';
-import PredictionChart from './PredictionChart';
+import PredictionHistory from './pages/PredictionHistory';
 import SideBar from "./Sidebar";
 import axios from 'axios';
 
@@ -17,6 +17,13 @@ function App() {
         setPredictionData({ "Churn": 0, "No Churn": 0 });
       })
       .catch(console.error);
+  };
+
+  const handlePredictionUpdate = (predictionType) => {
+    setPredictionData(prevData => ({
+      ...prevData,
+      [predictionType]: (prevData[predictionType] || 0) + 1
+    }));
   };
 
   useEffect(() => {
@@ -41,18 +48,24 @@ function App() {
         <div className='col-9 p-3'>
           <Routes>
             <Route path="/" element={<div>Welcome to Churn App</div>} />
-            <Route path="/predict" element={<Predict />} />
+            <Route path="/predict" element={
+              <Predict onPredictionUpdate={handlePredictionUpdate} />
+            } />
             <Route path="/history" element={
-              <div>
+              <div style={{ marginTop: "5%" }}>
                 <h2>Prediction History</h2>
-                <PredictionChart data={predictionData} />
-                <button onClick={handleReset} style={{ marginTop: '10px' }}>
+                <PredictionHistory data={predictionData} />
+                <button
+                  className="btn btn-lg btn-secondary mt-3"
+                  onClick={handleReset}
+                  style={{marginLeft: "26%"}}
+                >
                   Reset Prediction History
                 </button>
               </div>
             } />
             <Route path="/features" element={
-              <div>
+              <div style={{ marginRight: "10%", marginTop: "5%" }}>
                 <h2>Feature Importance</h2>
                 <ImportantFeatures labels={labels} importances={importances} />
               </div>

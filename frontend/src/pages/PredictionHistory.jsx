@@ -37,7 +37,7 @@ const PredictionHistory = ({ data }) => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto' }}>
+    <div style={{ maxWidth: '400px', marginLeft: '20%' }}>
       <Pie data={chartData} options={options} />
       <p style={{ textAlign: 'center' }}>
         Total predictions: {churn + noChurn}
