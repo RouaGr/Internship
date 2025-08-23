@@ -17,10 +17,10 @@ git clone https://github.com/RouaGr/Internship.git
 cd Internship
 
 ## Backend Setup (FastAPI)
-cd backend 
+cd Backend/ 
 python3 -m venv venv
 source venv/bin/activate
-pip installl -r requirements.txt
+pip install -r requirements.txt
 uvicorn app_churn:app --reload
 
 ## Frontend Setup (React)

@@ -11,7 +11,6 @@ prediction_history =[]
 
 # Load model
 model = joblib.load("../Model_processing/model_churn.pkl")
-print(model)
 
 # Define the API
 app = FastAPI(title="Churn Prediction API")
@@ -67,6 +66,7 @@ def predict_churn(data: CustomerData):
         data.RoamMins
     ]])
 
+    print(input_data)
     # Predict
     prediction = model.predict(input_data)[0]
     proba = model.predict_proba(input_data)[0][1]
