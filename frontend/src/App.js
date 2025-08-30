@@ -40,7 +40,10 @@ function App() {
       .catch(console.error);
 
     axios.get('http://127.0.0.1:8000/prediction-history')
-      .then(res => setPredictionData(res.data))
+      .then(res => {
+        setPredictionData(res.data)
+        setPredictionHistory(res.data.prediction_history || []);
+      })
       .catch(console.error);
   }, []);
 
@@ -71,7 +74,7 @@ function App() {
                 <button
                   className="btn btn-lg btn-secondary mt-3"
                   onClick={handleReset}
-                  style={{ marginLeft: "26%" }}
+                  style={{ marginLeft: "33%", marginBottom: "5%" }}
                 >
                   Reset Prediction History
                 </button>
