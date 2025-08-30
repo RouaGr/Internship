@@ -5,8 +5,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PredictionHistory = ({ data }) => {
-  console.log(data);
-  
   const churn = data["Churn"] || 0;
   const noChurn = data["No Churn"] || 0;
   const prediction_history = data["prediction_history"] || [];
