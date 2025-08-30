@@ -69,7 +69,7 @@ def predict_churn(data: CustomerData):
     data_dict["probability_of_churn"] = proba
     prediction_history.append(data_dict)
 
-    return {"prediction": result, "probability_of_churn": proba}
+    return {"prediction": result, "probability_of_churn": proba, "data": data_dict}
 
 @app.get("/prediction-history")
 def get_prediction_summary():

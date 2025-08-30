@@ -32,7 +32,7 @@ const Predict = ({ onPredictionUpdate }) => {
       setResult(res.data);
       
       if (onPredictionUpdate && res.data) {
-        onPredictionUpdate(res.data.prediction);
+        onPredictionUpdate(res.data);
       }
     } catch (err) {
       console.error("Prediction request failed:", err);

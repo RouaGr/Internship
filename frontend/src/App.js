@@ -11,20 +11,24 @@ function App() {
   const [labels, setLabels] = useState([]);
   const [importances, setImportances] = useState([]);
   const [predictionData, setPredictionData] = useState({});
+  const [predictionHistory, setPredictionHistory] = useState([]);
 
   const handleReset = () => {
     axios.delete('http://127.0.0.1:8000/reset-history')
       .then(() => {
         setPredictionData({ "Churn": 0, "No Churn": 0 });
+        setPredictionHistory([]);
       })
       .catch(console.error);
   };
 
-  const handlePredictionUpdate = (predictionType) => {
+  const handlePredictionUpdate = (data) => {
+    const predictionType = data.prediction;
     setPredictionData(prevData => ({
       ...prevData,
       [predictionType]: (prevData[predictionType] || 0) + 1
     }));
+    setPredictionHistory(prevHistory => [...prevHistory, data.data]);
   };
 
   useEffect(() => {
@@ -49,7 +53,7 @@ function App() {
         <div className='col-9 p-3'>
           <Routes>
             <Route path="/" element={
-              <Home/>
+              <Home />
             } />
             <Route path="/predict" element={
               <Predict onPredictionUpdate={handlePredictionUpdate} />
@@ -57,11 +61,17 @@ function App() {
             <Route path="/history" element={
               <div style={{ marginTop: "5%" }}>
                 <h2>Prediction History</h2>
-                <PredictionHistory data={predictionData} />
+                <PredictionHistory
+                  data={{
+                    "prediction_history": predictionHistory,
+                    "Churn": predictionData["Churn"],
+                    "No Churn": predictionData["No Churn"]
+                  }}
+                />
                 <button
                   className="btn btn-lg btn-secondary mt-3"
                   onClick={handleReset}
-                  style={{marginLeft: "26%"}}
+                  style={{ marginLeft: "26%" }}
                 >
                   Reset Prediction History
                 </button>
