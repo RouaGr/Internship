@@ -43,7 +43,7 @@ const PredictionHistory = ({ data }) => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4" style={{ paddingRight: '5%' }}>
       <div className="row">
         <div className="col-md-6 d-flex flex-column align-items-center">
           <h4 className="mb-3">Churn vs No Churn</h4>
