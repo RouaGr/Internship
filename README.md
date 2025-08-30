@@ -7,23 +7,32 @@ It invloves building a predictive analytics platform that :
 
 # Tech Stack 
 Backend: FastAPI(Python), Joblib, NumPy, Pandas
+
 Frontend: React, Chart.js, Axios
+
 ML Model: RandomForestClassifier (best performing on churn dataset)
 
 # Installation 
 
 ## Clone the repository 
 git clone https://github.com/RouaGr/Internship.git
+
 cd Internship
 
 ## Backend Setup (FastAPI)
 cd Backend/ 
+
 python3 -m venv venv
+
 source venv/bin/activate
+
 pip install -r requirements.txt
+
 uvicorn app_churn:app --reload
 
 ## Frontend Setup (React)
 cd ../frontend
+
 npm install
+
 npm start 
