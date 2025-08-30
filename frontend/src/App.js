@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './pages/Home';
 import Predict from './pages/Predict';
 import ImportantFeatures from './pages/ImportantFeatures';
 import PredictionHistory from './pages/PredictionHistory';
@@ -47,7 +48,9 @@ function App() {
         </div>
         <div className='col-9 p-3'>
           <Routes>
-            <Route path="/" element={<div>Welcome to Churn App</div>} />
+            <Route path="/" element={
+              <Home/>
+            } />
             <Route path="/predict" element={
               <Predict onPredictionUpdate={handlePredictionUpdate} />
             } />
